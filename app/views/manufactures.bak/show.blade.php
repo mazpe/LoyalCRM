@@ -1,0 +1,1 @@
+/data/sites/loyaldriver.com/portal/app/views/manufactures/show.blade.php
