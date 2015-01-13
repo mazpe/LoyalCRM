@@ -122,10 +122,12 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
+        'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Bllim\Datatables\DatatablesServiceProvider',
         'Appitventures\Phpgmaps\PhpgmapsServiceProvider',
+        'Orangehill\Iseed\IseedServiceProvider',
 	),
 
 	/*

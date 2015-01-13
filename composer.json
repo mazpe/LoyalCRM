@@ -10,10 +10,14 @@
         "laravelbook/ardent": "dev-master",
 		"fzaninotto/faker": "1.4",
         "bllim/datatables": "*",
-        "appitventures/phpgmaps": "dev-master"
+        "appitventures/phpgmaps": "dev-master",
+        "orangehill/iseed": "dev-master"
 	},
     "require-dev": {
         "way/generators": "2.*"
+    },
+    "require-dev": {
+        "xethron/migrations-generator": "dev-master"
     },
 	"autoload": {
 		"classmap": [

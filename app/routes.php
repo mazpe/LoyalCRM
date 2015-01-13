@@ -9,7 +9,7 @@ Route::get('logout', function()
     Auth::logout();
     return Redirect::to('login');
 });
-
+Route::get('dbmigrate', 'DbmigrateController@index');
 Route::get('deals/gridajax', array('as' => 'gridajax', 'uses' => 'DealsController@gridajax')); 
 Route::group([ 'before' => 'auth' ], function() { 
 
