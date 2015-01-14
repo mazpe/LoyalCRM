@@ -9,7 +9,6 @@ class ContactTypesTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('contact_types')->truncate();
         
 		\DB::table('contact_types')->insert(array (
 			0 => 

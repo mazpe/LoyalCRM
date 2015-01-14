@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'key' => 'LoyalDriverCRM7$',
+	'key' => 'LoyalDriverCRMDevel7$',
     //YourSecretKey!!!
 
 	/*

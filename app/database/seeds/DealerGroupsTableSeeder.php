@@ -9,7 +9,6 @@ class DealerGroupsTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('dealer_groups')->truncate();
         
 		\DB::table('dealer_groups')->insert(array (
 			0 => 

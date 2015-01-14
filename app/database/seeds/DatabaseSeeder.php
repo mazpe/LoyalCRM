@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder {
 		$this->call('StagesTableSeeder');
 		$this->call('AppointmentsTableSeeder');
 		$this->call('AssignedRolesTableSeeder');
+		$this->call('UsersTableSeeder');
 		$this->call('DealerGroupsTableSeeder');
 		$this->call('DealersTableSeeder');
 		$this->call('DispositionsTableSeeder');
 		$this->call('PermissionsTableSeeder');
 		$this->call('PermissionRoleTableSeeder');
 		$this->call('TokenTableSeeder');
-		$this->call('UsersTableSeeder');
 		$this->call('CallRecordsTableSeeder');
 	}
 
