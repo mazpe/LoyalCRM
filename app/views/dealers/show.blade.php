@@ -237,14 +237,14 @@
                 <tr>
                    <td>
                     <small>
-                    {{ date("m-d-Y g:i A",strtotime($value->created_at)) }}
+                    {{ date("m-d-y h:m ",strtotime($value->created_at)) }}
                     </small>
                     </td>
 
                    <td>
                     <small>
 @if ($value->last_contact_date)
-    {{ date("m-d-Y g:i A",strtotime($value->last_contact_date)) }}
+    {{ date("m-d-y h:m ",strtotime($value->last_contact_date)) }}
 @endif
                     </small>
                     </td>
