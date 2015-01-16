@@ -414,7 +414,7 @@ class DealerController extends \BaseController {
                 $call_records->last_call                = $last_call;
                 $call_records->stage_id                
                     = Input::get('stage_id');
-                $call_records->added_by_id = Auth::user()->id;
+                $call_records->added_by_id              = Auth::user()->id;
                 $call_records->save();
 
             }
