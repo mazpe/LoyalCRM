@@ -266,16 +266,16 @@ $count += $value->count;
             <td>
             <small>
             @if ($value->last_contact_date)
-                {{ date("m-d-Y g:i A",strtotime($value->last_contact_date)) }}
-                 - {{ date("l",strtotime($value->last_contact_date)) }}
+                {{ date("m-d-y h:m ",strtotime($value->last_contact_date)) }}
+                 
             @endif
             </small>
             </td>
             <td>
             <small>
             @if ($value->next_contact_date)
-                {{ date("m-d-Y g:i A",strtotime($value->next_contact_date)) }}
-                 - {{ date("l",strtotime($value->next_contact_date)) }}
+                {{ date("m-d-y h:m ",strtotime($value->next_contact_date)) }}
+                 
             @endif
             </small>
             </td>
