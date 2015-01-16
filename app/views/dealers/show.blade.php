@@ -229,6 +229,7 @@
                     <th>Contact Note</th>
                     <th width="10%">Stage</th>
                     <th width="8%">Last Call</th>
+                    <th width="8%">AB</th>
                 </tr>
             </thead>
             <tbody>
@@ -254,13 +255,21 @@
                     </td>
                    <td><small>{{ $value->last_contact_note }}</small></td>
                    <td><small>{{ $value->stage->name }}</small></td>
+                   
                    <td>
                     <small>
 @if ($value->last_call == "1")
     Yes
-@endif
+@endif  
                     </small>
                     </td>
+                   <td>
+                    <small>
+@if ($value->added_by_id)
+    {{ $value->addedby->initials }}
+@endif  
+                 </small>
+                 </td>   
                 </tr>
                 @endforeach
             </tbody>

@@ -12,6 +12,11 @@
         {
             return $this->belongsTo('Stage');
         }
+		
+        public function addedby()
+		{
+		    return $this->belongsTo('User','added_by_id');
+		}
 
         public function repairorder()
         {

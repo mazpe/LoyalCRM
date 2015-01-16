@@ -187,15 +187,20 @@ class DealerController extends \BaseController {
             ContactType::lists('name', 'id');
         $stages = array('' => 'Select a Stage') +
             Stage::lists('name', 'id');
+
         $notes = CallRecord::where('dealer_id','=',$id)
             ->orderBy('created_at','DESC')
             ->get();
+        
+
 
         return View::make('dealers.show')
             ->with(compact('dealer'))
             ->with(compact('contact_types'))
             ->with(compact('stages'))
             ->with(compact('notes'))
+          
+            
         ;
     }
 
@@ -361,6 +366,7 @@ class DealerController extends \BaseController {
         $next_contact_date      = Input::get('next_contact_date');
         $next_contact_type_id   = Input::get('next_contact_type_id');
 
+
         if ($validator->fails()) {
             return Redirect::to( '/dealers/'. $id )
                 ->withErrors($validator)
@@ -408,6 +414,7 @@ class DealerController extends \BaseController {
                 $call_records->last_call                = $last_call;
                 $call_records->stage_id                
                     = Input::get('stage_id');
+                $call_records->added_by_id = Auth::user()->id;
                 $call_records->save();
 
             }

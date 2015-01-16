@@ -22,6 +22,8 @@ class CreateCallRecordsTable extends Migration {
 			$table->text('last_contact_note', 65535)->nullable();
 			$table->boolean('last_call')->nullable();
 			$table->integer('stage_id')->nullable()->index('stage_id');
+            $table->integer('added_by_id')->unsigned()->index('call_records_added_by_foreing');
+            //$table->foreign('added_by_id')->references('id')->on('users');
 			$table->timestamps();
 			$table->index(['last_contact_type_id','stage_id'], 'last_contact_type_id');
 		});
