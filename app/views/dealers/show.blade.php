@@ -230,6 +230,8 @@
                     <th width="10%">Stage</th>
                     <th width="8%">Last Call</th>
                     <th width="8%">AB</th>
+                    <th width="8%">EB</th>
+                    <th width="8%">Operations</th>
                 </tr>
             </thead>
             <tbody>
@@ -269,7 +271,17 @@
     {{ $value->addedby->initials }}
 @endif  
                  </small>
+                </td> 
+                 <td>
+                    <small>
+@if ($value->edited_by_id)
+    {{ $value->editedby->initials }}
+@endif              
+             
+                 </small>
                  </td> 
+
+                  
                  <td>
                     <small>
 <a href="{{ URL::to('dealers/'. $dealer->id .'/note/' . $value->id ). '/edit' }}">

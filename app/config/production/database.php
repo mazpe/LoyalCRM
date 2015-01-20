@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'loyaldriver_crm_devel',
 			'username'  => 'root',
-			'password'  => 'gbRND2008',
+			'password'  => 'mdelcarmen19007',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

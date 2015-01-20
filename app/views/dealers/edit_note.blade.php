@@ -31,7 +31,7 @@
 
   <div class="form-group">
   {{ Form::label('last_contact_note', 'Last Contact Note') }}
-  {{ Form::text('last_contact_note', $note->last_contact_note , null, array('class' => 'form-control')) }}
+  {{ Form::textarea('last_contact_note', $note->last_contact_note , null, array('class' => 'form-control')) }}
   </div>
 
   <div class="form-group">
