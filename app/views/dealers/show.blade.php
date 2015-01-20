@@ -272,7 +272,7 @@
                  </td> 
                  <td>
                     <small>
-<a href="{{ URL::to('dealers/note/' . $value->id ). '/update' }}">
+<a href="{{ URL::to('dealers/'. $dealer->id .'/note/' . $value->id ). '/edit' }}">
                 edit
             </a>  
                  </small>

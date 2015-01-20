@@ -17,9 +17,7 @@
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($note,array('action' => array('DealerController@note_update', $note->id))) }}
-
-  
+{{ Form::open(array('url' => 'dealers/'.$dealer_id.'/note/'.$note->id.'/update')) }}
   
   <div class="form-group">
   {{ Form::label('last_contact_date', 'Last Contact Date') }}

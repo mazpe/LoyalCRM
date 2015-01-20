@@ -211,10 +211,10 @@ class DealerController extends \BaseController {
      * @return Response
      */    
 
-    public function note_edit($id)
+    public function note_edit($id,$note_id)
     {
      
-     $note = CallRecord::find($id);
+     $note = CallRecord::find($note_id);
      $contact_types = array('' => 'Select a Call Type') +
             ContactType::lists('name', 'id');
      $stages = array('' => 'Select a Stage') +
@@ -224,6 +224,7 @@ class DealerController extends \BaseController {
            ->with('note',$note)
            ->with('contact_types',$contact_types)
            ->with('stages',$stages)
+            ->with('dealer_id',$id)
            ;
     }
 
@@ -234,24 +235,23 @@ class DealerController extends \BaseController {
      * @return Response
      */   
 
-    public function note_update($id)
+    public function note_update($id,$note_id)
     {
 
-       $note = CallRecord::find($id);
-
+       $note = CallRecord::find($note_id);
        $note->last_contact_date = Input::get('last_contact_date');
        $note->last_contact_type_id = Input::get('last_contact_type');
        $note->last_contact_note = Input::get('last_contact_note');
        $note->last_call = Input::get('last_call');
        $note->stage_id = Input::get('stage');
        $note->edited_by_id = Auth::user()->id;
-       $note->updated_at = date("m-d-Y  g:i A");
+       //$note->updated_at = date("m-d-Y  g:i A");
        $note->save();
 
        // redirect
             Session::flash('message', 'Successfully edited Note!');
             //if (Auth::user()->hasRole('Agent')) {
-                return Redirect::to('dealers/'. Auth::user()->id);
+                return Redirect::to('dealers/'. $id);
             //}
 
 
