@@ -204,6 +204,62 @@ class DealerController extends \BaseController {
         ;
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */    
+
+    public function note_edit($id)
+    {
+     
+     $note = CallRecord::find($id);
+     $contact_types = array('' => 'Select a Call Type') +
+            ContactType::lists('name', 'id');
+     $stages = array('' => 'Select a Stage') +
+            Stage::lists('name', 'id');
+
+     return View::make('dealers.edit_note')
+           ->with('note',$note)
+           ->with('contact_types',$contact_types)
+           ->with('stages',$stages)
+           ;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */   
+
+    public function note_update($id)
+    {
+
+       $note = CallRecord::find($id);
+
+       $note->last_contact_date = Input::get('last_contact_date');
+       $note->last_contact_type_id = Input::get('last_contact_type');
+       $note->last_contact_note = Input::get('last_contact_note');
+       $note->last_call = Input::get('last_call');
+       $note->stage_id = Input::get('stage');
+       $note->edited_by_id = Auth::user()->id;
+       $note->updated_at = date("m-d-Y  g:i A");
+       $note->save();
+
+       // redirect
+            Session::flash('message', 'Successfully edited Note!');
+            //if (Auth::user()->hasRole('Agent')) {
+                return Redirect::to('dealers/'. Auth::user()->id);
+            //}
+
+
+    }
+
+
+    
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *

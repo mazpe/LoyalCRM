@@ -269,7 +269,14 @@
     {{ $value->addedby->initials }}
 @endif  
                  </small>
-                 </td>   
+                 </td> 
+                 <td>
+                    <small>
+<a href="{{ URL::to('dealers/note/' . $value->id ). '/update' }}">
+                edit
+            </a>  
+                 </small>
+                 </td>     
                 </tr>
                 @endforeach
             </tbody>

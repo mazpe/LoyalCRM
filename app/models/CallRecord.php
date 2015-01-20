@@ -18,6 +18,11 @@
 		    return $this->belongsTo('User','added_by_id');
 		}
 
+        public function editedby()
+        {
+            return $this->belongsTo('User','edited_by_id');
+        }
+
         public function repairorder()
         {
             //return $this->belongsTo('Disposition');

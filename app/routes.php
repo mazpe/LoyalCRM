@@ -34,6 +34,10 @@ Route::resource('dealergroups', 'DealerGroupController');
 
 Route::post('dealers/disposition', 'DealerController@disposition'); 
 Route::get('dealers/{id}/delete', 'DealerController@destroy'); 
+//ruta nueva
+Route::get('dealers/note/{id}/update','DealerController@note_edit');
+Route::post('dealers/note/update','DealerController@note_update');
+
 Route::resource('dealers', 'DealerController');
 
 Route::resource('dispositions', 'DispositionsController');
