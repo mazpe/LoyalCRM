@@ -249,9 +249,9 @@ class DealerController extends \BaseController {
        $note->save();
 
        // redirect
-            Session::flash('message', 'Successfully edited Note!');
+        Session::flash('message', 'Successfully edited Note!');
             //if (Auth::user()->hasRole('Agent')) {
-                return Redirect::to('dealers/'. $id);
+        return Redirect::to('dealers/'. $id);
             //}
 
 
@@ -296,7 +296,10 @@ class DealerController extends \BaseController {
 	public function update($id)
 	{
         $dealer_group_id        = Input::get('dealer_group_id');
-        $agent_id               = Input::get('agent_id');
+        $agent_id               = Input::get('agent_id_1');
+        $agent_id_2             = Input::get('agent_id_2');
+        $agent_id_3             = Input::get('agent_id_3');
+        $agent_id_4             = Input::get('agent_id_4');
 		//
         // validate
         // read more on validation at http://laravel.com/docs/validation
@@ -327,7 +330,18 @@ class DealerController extends \BaseController {
             }
             if ($agent_id == "") 
                 { $dealer->agent_id = null; } 
-            else { $dealer->agent_id = $agent_id; }
+            elseif ($agent_id_2 == "")
+                { $dealer->agent_id_2 = null;}
+            elseif ($agent_id_3 == "")
+                { $dealer->agent_id_3 = null;}
+            elseif ($agent_id_4 == "")
+                { $dealer->agent_id_4 = null;}
+            else 
+                { $dealer->agent_id   = $agent_id;
+                  $dealer->agent_id_2 = $agent_id_2;  
+                  $dealer->agent_id_3 = $agent_id_3;
+                  $dealer->agent_id_4 = $agent_id_4;
+                }
             $dealer->name               = Input::get('name');
             $dealer->address_1          = Input::get('address_1');
             $dealer->address_2          = Input::get('address_2');

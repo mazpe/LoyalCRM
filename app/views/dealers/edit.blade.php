@@ -29,8 +29,23 @@
     {{ Form::hidden('agent_id', Auth::user()->id) }}
 @elseif (Auth::user()->hasRole('Admin'))
     <div class="form-group">
-        {{ Form::label('agent_id', 'Loyal Customer Strategist') }}
-        {{ Form::select('agent_id', $agents , Input::old('agent_id'),
+        {{ Form::label('agent_id', 'Sales Rep 1') }}
+        {{ Form::select('agent_id_1', $agents ,$dealer->agent_id,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 2') }}
+        {{ Form::select('agent_id_2', $agents , $dealer->agent_id_2,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 3') }}
+        {{ Form::select('agent_id_3', $agents , $dealer->agent_id_3,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 4') }}
+        {{ Form::select('agent_id_4', $agents , $dealer->agent_id_4,
             array('class' => 'form-control')) }}
     </div>
 @endif

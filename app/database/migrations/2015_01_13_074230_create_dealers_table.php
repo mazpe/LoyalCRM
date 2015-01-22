@@ -18,6 +18,9 @@ class CreateDealersTable extends Migration {
 			$table->integer('dealer_group_id')->unsigned()->nullable()->index('dealers_dealer_group_id_foreign');
 			$table->integer('manufacture_id')->unsigned()->nullable()->index('dealers_manufacture_id_foreign');
 			$table->integer('agent_id')->unsigned()->nullable()->index('dealers_agent_id_foreign');
+			$table->integer('agent_id_2')->unsigned()->nullable()->index('dealers_agent_id_foreign_2');
+			$table->integer('agent_id_3')->unsigned()->nullable()->index('dealers_agent_id_foreign_3');
+			$table->integer('agent_id_4')->unsigned()->nullable()->index('dealers_agent_id_foreign_4');
 			$table->string('name')->unique();
 			$table->string('address_1')->nullable();
 			$table->string('address_2')->nullable();

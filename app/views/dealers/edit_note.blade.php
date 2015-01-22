@@ -36,7 +36,7 @@
 
   <div class="form-group">
   {{ Form::label('last_call', 'Last Call') }}
-  {{ Form::checkbox('last_call', 'value', $note->last_call) }}
+  {{ Form::checkbox('last_call', 'value', $note->last_call,array('class' => 'checkbox')) }}
   </div>
 
   <div class="form-group">
