@@ -1,4 +1,5 @@
 @extends("layout")
+
 @section("content")
 
 <nav class="navbar navbar-inverse">
@@ -8,12 +9,13 @@
     </ul>
 </nav>
 
+
 <h2>Edit {{ $dealer->name }}</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($dealer, array('route' => array('dealers.update', $dealer->id), 'method' => 'PUT')) }}
+{{ Form::model($dealer, array('route' => array('dealers.update', $dealer->id), 'method' => 'PUT', 'name'=>'edit')) }}
 
     <div class="form-group">
         {{ Form::label('dealer_group_id', 'Dealer Group') }}
@@ -153,7 +155,7 @@
         {{ Form::select('active', array('1' => 'Active', '2' => 'Inactive'), null, array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Edit the Dealer!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Edit the Dealer!', array('class' => 'btn btn-primary', 'onclick'=> 'multiple_agent_validation()')) }}
 
 {{ Form::close() }}
 

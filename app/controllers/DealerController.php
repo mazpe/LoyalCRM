@@ -300,9 +300,18 @@ class DealerController extends \BaseController {
         $agent_id_2             = Input::get('agent_id_2');
         $agent_id_3             = Input::get('agent_id_3');
         $agent_id_4             = Input::get('agent_id_4');
-		//
+
+     /*   var_dump($agent_id);
+        var_dump($agent_id_2);
+        var_dump($agent_id_3);
+        var_dump($agent_id_4);
+        die();*/
+        		//
         // validate
         // read more on validation at http://laravel.com/docs/validation
+        
+
+
         $rules = array(
             //'dealer_group_id'   => 'required|numeric',
             //'manufacture_id'    => 'required|numeric',
@@ -311,11 +320,41 @@ class DealerController extends \BaseController {
         );
         $validator = Validator::make(Input::all(), $rules);
 
+
+        $array = Array();
+
+    if ($agent_id != ""){
+        $array[count($array)] = $agent_id;
+    }
+    if($agent_id_2 != ""){
+        $array[count($array)] = $agent_id_2;
+    }
+    if($agent_id_3 != ""){
+        $array[count($array)] = $agent_id_3;
+    }
+    if($agent_id_4 != ""){
+        $array[count($array)] = $agent_id_4;
+    }
+
+   
+   $error = 0;
+
+    if (count($array) >1){
+    for ($i = 0; $i < count($array); $i++) {
+        for ( $x = 0; $x < count($array); $x++) {
+           if(($i != $x) && $array[$i]==$array[$x]){
+               $error=$error+1;
+           }
+        }
+    }
+}
         // process the login
-        if ($validator->fails()) {
+         $msg = "You can't select the same agent twice";
+         if ($validator->fails() || $error > 0) {
             return Redirect::to('dealers/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator,$msg)
+                ->withInput(Input::except('password'))
+                ;
         } else {
             // store
             $dealer = Dealer::find($id);
@@ -329,19 +368,22 @@ class DealerController extends \BaseController {
                 $dealer->manufacture_id     = Input::get('manufacture_id');
             }
             if ($agent_id == "") 
-                { $dealer->agent_id = null; } 
-            elseif ($agent_id_2 == "")
+                { $dealer->agent_id = null; }
+            else
+                {$dealer->agent_id   = $agent_id;} 
+            if ($agent_id_2 == "")
                 { $dealer->agent_id_2 = null;}
-            elseif ($agent_id_3 == "")
+            else
+                {$dealer->agent_id_2 = $agent_id_2;}
+            if ($agent_id_3 == "")
                 { $dealer->agent_id_3 = null;}
-            elseif ($agent_id_4 == "")
+            else
+                {$dealer->agent_id_3 = $agent_id_3;}
+            if ($agent_id_4 == "")
                 { $dealer->agent_id_4 = null;}
             else 
-                { $dealer->agent_id   = $agent_id;
-                  $dealer->agent_id_2 = $agent_id_2;  
-                  $dealer->agent_id_3 = $agent_id_3;
-                  $dealer->agent_id_4 = $agent_id_4;
-                }
+                {$dealer->agent_id_4 = $agent_id_4;}
+
             $dealer->name               = Input::get('name');
             $dealer->address_1          = Input::get('address_1');
             $dealer->address_2          = Input::get('address_2');
@@ -370,14 +412,15 @@ class DealerController extends \BaseController {
             $dealer->updated_by_id      = Auth::user()->id;
             $dealer->active             = Input::get('active');
             $dealer->save();
-
+            $error = 0;
             // redirect
             Session::flash('message', 'Successfully updated Dealer!');
             //if (Auth::user()->hasRole('Agent')) {
                 return Redirect::to('dealers/'. $id);
             //}
-
+ 
         }
+        
 	}
 
 	/**
