@@ -40,6 +40,30 @@
           color: #404040;
       }
 
+      .alert {
+
+         padding: 8px 35px 8px 14px;
+         margin-bottom: 18px;
+         color: #c09853;
+         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+         /*background-color: #fcf8e3;*/
+         border: 1px solid #fbeed5;
+         -webkit-border-radius: 4px;
+         -moz-border-radius: 4px;
+         border-radius: 4px;
+        }
+
+       .alert-heading {
+          color: inherit;
+        }
+
+       .alert .close {
+           position: relative;
+           top: -2px;
+           right: -21px;
+           line-height: 18px;
+       }
+
     </style>
 
     <title>Loyal Driver - CRM</title>
@@ -58,8 +82,16 @@
 
         <!-- if there are login errors, show them here -->
         <p>
+            @if( $errors->first('email') )
+            <div class="alert">
             {{ $errors->first('email') }}
+            </div>
+            @endif
+            @if( $errors->first('password') )
+            <div class="alert">
             {{ $errors->first('password') }}
+            </div>
+            @endif
         </p>
 
         <p>
