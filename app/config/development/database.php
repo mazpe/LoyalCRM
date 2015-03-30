@@ -11,7 +11,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'loyaldriver_crm_devel',
+			'database'  => 'loyaldriver_crm_dev',
 			'username'  => 'root',
 			'password'  => 'gbRND2008',
 			'charset'   => 'utf8',

@@ -29,12 +29,4 @@
             return $this->belongsTo('RepairOrder','vehicle_vin');
         }
 
-        public function addedby()
-        {
-            return $this->belongsTo('User','added_by_id');
-        }
-
-
-
-
     }
