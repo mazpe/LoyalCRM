@@ -229,6 +229,9 @@
                     <th>Contact Note</th>
                     <th width="10%">Stage</th>
                     <th width="8%">Last Call</th>
+                    <th width="8%">AB</th>
+                    <th width="8%">EB</th>
+                    <th width="8%">Operations</th>
                 </tr>
             </thead>
             <tbody>
@@ -236,14 +239,14 @@
                 <tr>
                    <td>
                     <small>
-                    {{ date("m-d-Y g:i A",strtotime($value->created_at)) }}
+                    {{ date("m-d-y h:m ",strtotime($value->created_at)) }}
                     </small>
                     </td>
 
                    <td>
                     <small>
 @if ($value->last_contact_date)
-    {{ date("m-d-Y g:i A",strtotime($value->last_contact_date)) }}
+    {{ date("m-d-y h:m ",strtotime($value->last_contact_date)) }}
 @endif
                     </small>
                     </td>
@@ -254,13 +257,38 @@
                     </td>
                    <td><small>{{ $value->last_contact_note }}</small></td>
                    <td><small>{{ $value->stage->name }}</small></td>
+                   
                    <td>
                     <small>
 @if ($value->last_call == "1")
     Yes
-@endif
+@endif  
                     </small>
                     </td>
+                   <td>
+                    <small>
+@if ($value->added_by_id)
+    {{ $value->addedby->initials }}
+@endif  
+                 </small>
+                </td> 
+                 <td>
+                    <small>
+@if ($value->edited_by_id)
+    {{ $value->editedby->initials }}
+@endif              
+             
+                 </small>
+                 </td> 
+
+                  
+                 <td>
+                    <small>
+<a href="{{ URL::to('dealers/'. $dealer->id .'/note/' . $value->id ). '/edit' }}">
+                edit
+            </a>  
+                 </small>
+                 </td>     
                 </tr>
                 @endforeach
             </tbody>

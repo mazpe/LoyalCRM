@@ -187,17 +187,78 @@ class DealerController extends \BaseController {
             ContactType::lists('name', 'id');
         $stages = array('' => 'Select a Stage') +
             Stage::lists('name', 'id');
+
         $notes = CallRecord::where('dealer_id','=',$id)
             ->orderBy('created_at','DESC')
             ->get();
+        
+
 
         return View::make('dealers.show')
             ->with(compact('dealer'))
             ->with(compact('contact_types'))
             ->with(compact('stages'))
             ->with(compact('notes'))
+          
+            
         ;
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */    
+
+    public function note_edit($id,$note_id)
+    {
+     
+     $note = CallRecord::find($note_id);
+     $contact_types = array('' => 'Select a Call Type') +
+            ContactType::lists('name', 'id');
+     $stages = array('' => 'Select a Stage') +
+            Stage::lists('name', 'id');
+
+     return View::make('dealers.edit_note')
+           ->with('note',$note)
+           ->with('contact_types',$contact_types)
+           ->with('stages',$stages)
+            ->with('dealer_id',$id)
+           ;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */   
+
+    public function note_update($id,$note_id)
+    {
+
+       $note = CallRecord::find($note_id);
+       $note->last_contact_date = Input::get('last_contact_date');
+       $note->last_contact_type_id = Input::get('last_contact_type');
+       $note->last_contact_note = Input::get('last_contact_note');
+       $note->last_call = Input::get('last_call');
+       $note->stage_id = Input::get('stage');
+       $note->edited_by_id = Auth::user()->id;
+       //$note->updated_at = date("m-d-Y  g:i A");
+       $note->save();
+
+       // redirect
+        Session::flash('message', 'Successfully edited Note!');
+            //if (Auth::user()->hasRole('Agent')) {
+        return Redirect::to('dealers/'. $id);
+            //}
+
+
+    }
+
+
+    
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -235,10 +296,22 @@ class DealerController extends \BaseController {
 	public function update($id)
 	{
         $dealer_group_id        = Input::get('dealer_group_id');
-        $agent_id               = Input::get('agent_id');
-		//
+        $agent_id               = Input::get('agent_id_1');
+        $agent_id_2             = Input::get('agent_id_2');
+        $agent_id_3             = Input::get('agent_id_3');
+        $agent_id_4             = Input::get('agent_id_4');
+
+     /*   var_dump($agent_id);
+        var_dump($agent_id_2);
+        var_dump($agent_id_3);
+        var_dump($agent_id_4);
+        die();*/
+        		//
         // validate
         // read more on validation at http://laravel.com/docs/validation
+        
+
+
         $rules = array(
             //'dealer_group_id'   => 'required|numeric',
             //'manufacture_id'    => 'required|numeric',
@@ -247,11 +320,41 @@ class DealerController extends \BaseController {
         );
         $validator = Validator::make(Input::all(), $rules);
 
+
+        $array = Array();
+
+    if ($agent_id != ""){
+        $array[count($array)] = $agent_id;
+    }
+    if($agent_id_2 != ""){
+        $array[count($array)] = $agent_id_2;
+    }
+    if($agent_id_3 != ""){
+        $array[count($array)] = $agent_id_3;
+    }
+    if($agent_id_4 != ""){
+        $array[count($array)] = $agent_id_4;
+    }
+
+   
+   $error = 0;
+
+    if (count($array) >1){
+    for ($i = 0; $i < count($array); $i++) {
+        for ( $x = 0; $x < count($array); $x++) {
+           if(($i != $x) && $array[$i]==$array[$x]){
+               $error=$error+1;
+           }
+        }
+    }
+}
         // process the login
-        if ($validator->fails()) {
+         $msg = "You can't select the same agent twice";
+         if ($validator->fails() || $error > 0) {
             return Redirect::to('dealers/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator,$msg)
+                ->withInput(Input::except('password'))
+                ;
         } else {
             // store
             $dealer = Dealer::find($id);
@@ -265,8 +368,22 @@ class DealerController extends \BaseController {
                 $dealer->manufacture_id     = Input::get('manufacture_id');
             }
             if ($agent_id == "") 
-                { $dealer->agent_id = null; } 
-            else { $dealer->agent_id = $agent_id; }
+                { $dealer->agent_id = null; }
+            else
+                {$dealer->agent_id   = $agent_id;} 
+            if ($agent_id_2 == "")
+                { $dealer->agent_id_2 = null;}
+            else
+                {$dealer->agent_id_2 = $agent_id_2;}
+            if ($agent_id_3 == "")
+                { $dealer->agent_id_3 = null;}
+            else
+                {$dealer->agent_id_3 = $agent_id_3;}
+            if ($agent_id_4 == "")
+                { $dealer->agent_id_4 = null;}
+            else 
+                {$dealer->agent_id_4 = $agent_id_4;}
+
             $dealer->name               = Input::get('name');
             $dealer->address_1          = Input::get('address_1');
             $dealer->address_2          = Input::get('address_2');
@@ -295,14 +412,15 @@ class DealerController extends \BaseController {
             $dealer->updated_by_id      = Auth::user()->id;
             $dealer->active             = Input::get('active');
             $dealer->save();
-
+            $error = 0;
             // redirect
             Session::flash('message', 'Successfully updated Dealer!');
             //if (Auth::user()->hasRole('Agent')) {
                 return Redirect::to('dealers/'. $id);
             //}
-
+ 
         }
+        
 	}
 
 	/**
@@ -360,6 +478,7 @@ class DealerController extends \BaseController {
         $next_contact_date      = Input::get('next_contact_date');
         $next_contact_type_id   = Input::get('next_contact_type_id');
 
+
         if ($validator->fails()) {
             return Redirect::to( '/dealers/'. $id )
                 ->withErrors($validator)
@@ -407,6 +526,7 @@ class DealerController extends \BaseController {
                 $call_records->last_call                = $last_call;
                 $call_records->stage_id                
                     = Input::get('stage_id');
+                $call_records->added_by_id              = Auth::user()->id;
                 $call_records->save();
 
             }

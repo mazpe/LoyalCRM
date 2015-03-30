@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'loyaldriver_crm_dev',
+			'database'  => 'loyaldriver_crm_devel',
 			'username'  => 'root',
-			'password'  => 'gbRND2008',
+			'password'  => 'mdelcarmen19007',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

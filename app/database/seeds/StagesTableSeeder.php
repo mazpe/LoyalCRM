@@ -9,7 +9,6 @@ class StagesTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('stages')->truncate();
         
 		\DB::table('stages')->insert(array (
 			0 => 

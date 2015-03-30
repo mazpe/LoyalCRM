@@ -1,4 +1,5 @@
 @extends("layout")
+
 @section("content")
 
 <nav class="navbar navbar-inverse">
@@ -8,12 +9,13 @@
     </ul>
 </nav>
 
+
 <h2>Edit {{ $dealer->name }}</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($dealer, array('route' => array('dealers.update', $dealer->id), 'method' => 'PUT')) }}
+{{ Form::model($dealer, array('route' => array('dealers.update', $dealer->id), 'method' => 'PUT', 'name'=>'edit')) }}
 
     <div class="form-group">
         {{ Form::label('dealer_group_id', 'Dealer Group') }}
@@ -29,8 +31,23 @@
     {{ Form::hidden('agent_id', Auth::user()->id) }}
 @elseif (Auth::user()->hasRole('Admin'))
     <div class="form-group">
-        {{ Form::label('agent_id', 'Loyal Customer Strategist') }}
-        {{ Form::select('agent_id', $agents , Input::old('agent_id'),
+        {{ Form::label('agent_id', 'Sales Rep 1') }}
+        {{ Form::select('agent_id_1', $agents ,$dealer->agent_id,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 2') }}
+        {{ Form::select('agent_id_2', $agents , $dealer->agent_id_2,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 3') }}
+        {{ Form::select('agent_id_3', $agents , $dealer->agent_id_3,
+            array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('agent_id', 'Sales Rep 4') }}
+        {{ Form::select('agent_id_4', $agents , $dealer->agent_id_4,
             array('class' => 'form-control')) }}
     </div>
 @endif
@@ -138,7 +155,7 @@
         {{ Form::select('active', array('1' => 'Active', '2' => 'Inactive'), null, array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Edit the Dealer!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Edit the Dealer!', array('class' => 'btn btn-primary', 'onclick'=> 'multiple_agent_validation()')) }}
 
 {{ Form::close() }}
 

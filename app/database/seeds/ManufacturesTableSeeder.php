@@ -9,7 +9,6 @@ class ManufacturesTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('manufactures')->truncate();
         
 		\DB::table('manufactures')->insert(array (
 			0 => 
