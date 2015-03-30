@@ -320,9 +320,8 @@ class DealerController extends \BaseController {
 
         // redirect
         Session::flash('message', 'Successfully deleted the Dealer!');
-        return Redirect::to('leads');
+        return Redirect::to('agents/'. Auth::user()->id .'/leads');
 	}
-
 
     public function disposition()
     {
