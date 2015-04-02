@@ -33,6 +33,7 @@ class UserController extends BaseController
             'username'   => 'required|unique:users',
             'password'   => 'required',
             'name'       => 'required',
+            'initials'   => 'required',
             'email'      => 'required|email|unique:users'
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -48,6 +49,7 @@ class UserController extends BaseController
             $user->username         = Input::get('username');
             $user->password         = Hash::make(Input::get('password'));
             $user->name             = Input::get('name');
+            $user->initials         = Input::get('initials');
             $user->address_1        = Input::get('address_1');
             $user->address_2        = Input::get('address_2');
             $user->city             = Input::get('city');
@@ -101,7 +103,8 @@ class UserController extends BaseController
         $rules = array(
             'username' => 'required',
             'name'     => 'required',
-            'email'     => 'required',
+            'initials' => 'required',
+            'email'    => 'required',
             'active'   => 'required|numeric'
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -115,6 +118,7 @@ class UserController extends BaseController
             // store
             $user = User::find($id);
             $user->name           = Input::get('name');
+            $user->initials       = Input::get('initials');
             $user->address_1      = Input::get('address_1');
             $user->address_2      = Input::get('address_2');
             $user->city           = Input::get('city');

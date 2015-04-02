@@ -29,7 +29,10 @@
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', null, array('class' => 'form-control')) }}
     </div>
-
+    <div class="form-group">
+        {{ Form::label('initials', 'Initials') }}
+        {{ Form::text('initials', null, array('class' => 'form-control')) }}
+    </div>
     <div class="form-group">
         {{ Form::label('address_1', 'Address 1') }}
         {{ Form::text('address_1', null, array('class' => 'form-control')) }}

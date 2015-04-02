@@ -30,7 +30,12 @@
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+        {{ Form::text('name', null, array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('initials', 'Initials') }}
+        {{ Form::text('initials', null, array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
