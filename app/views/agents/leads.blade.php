@@ -89,11 +89,11 @@ $i = 1;
         {{ Form::select('sort_2_dir', array ('ASC' => 'ASC', 'DESC' => 'DESC') , Input::old('sort_direction')) }}
 
         {{ Form::label('sort_3', 'Sort 3:') }}
-        {{ Form::select('sort_3', array (''=>'','dealer_groups.name' => 'Dealer Group','dealers.name' => 'Dealer', 'users.initials' => 'Agent' ,'manufactures.name' => 'Manufactures',  'dealers.city' => 'City','stages.name' => 'Stages', 'last_contact_date' => 'Last Contact', 'next_contact_date' => 'Next Contact') , 'dealer_groups.name') }}
+        {{ Form::select('sort_3', array (''=>'','dealer_groups.name' => 'Dealer Group','dealers.name' => 'Dealer', 'users.initials' => 'Agent' ,'manufactures.name' => 'Manufactures',  'dealers.city' => 'City','stages.name' => 'Stages', 'last_contact_date' => 'Last Contact', 'next_contact_date' => 'Next Contact') , 'dealers.name') }}
         {{ Form::select('sort_3_dir', array ('ASC' => 'ASC', 'DESC' => 'DESC') , Input::old('sort_direction')) }}
 
         {{ Form::label('sort_4', 'Sort 4:') }}
-        {{ Form::select('sort_4', array (''=>'','dealers.dealer_groups.name' => 'Dealer Group','dealers.name' => 'Dealer', 'users.initials' => 'Agent' ,'manufactures.name' => 'Manufactures',  'dealers.city' => 'City','stages.name' => 'Stages', 'last_contact_date' => 'Last Contact', 'next_contact_date' => 'Next Contact') , 'dealers.name') }}
+        {{ Form::select('sort_4', array (''=>'','dealer_groups.name' => 'Dealer Group','dealers.name' => 'Dealer', 'users.initials' => 'Agent' ,'manufactures.name' => 'Manufactures',  'dealers.city' => 'City','stages.name' => 'Stages', 'last_contact_date' => 'Last Contact', 'next_contact_date' => 'Next Contact') , 'dealer_groups.name') }}
         {{ Form::select('sort_4_dir', array ('ASC' => 'ASC', 'DESC' => 'DESC') , Input::old('sort_direction')) }}
     </div>
     <div class="form-group">

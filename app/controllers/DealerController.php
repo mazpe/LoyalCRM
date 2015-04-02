@@ -59,8 +59,8 @@ class DealerController extends \BaseController {
             ->orderByRaw('dealers.next_contact_date IS NOT NULL DESC,
                 dealers.next_contact_date')
             ->orderBy('stages.sorting')
-            ->orderBy('dealer_groups.name')
             ->orderBy('dealers.name')
+            ->orderBy('dealer_group.name')
             ->limit('500')
         ;
         $dealers_count = $dealers->count();
