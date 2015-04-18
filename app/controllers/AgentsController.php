@@ -149,9 +149,9 @@ class AgentsController extends \BaseController {
             ->orderByRaw('dealers.next_contact_date IS NOT NULL DESC,
                 dealers.next_contact_date')
             ->orderBy('stages.sorting')
-            ->orderBy('dealer_groups.name')
             ->orderBy('dealers.name')
-            ->take(100)
+            ->orderBy('dealer_groups.name')
+            //->take(100)
         ;
         $stages = array('' => 'Select a Stage') +
             Stage::lists('name', 'id');
@@ -166,7 +166,7 @@ class AgentsController extends \BaseController {
         ;
 
         $dealers_count = $dealers->count();
-        $dealers = $dealers->get();
+        $dealers = $dealers->paginate(50);
         $dealer_groups = array('' => 'Select a Dealer Group') +
             DealerGroup::lists('name', 'id');
         $manufactures = array('' => 'Select a Manufacture') +

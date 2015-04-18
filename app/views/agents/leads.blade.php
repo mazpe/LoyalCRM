@@ -283,7 +283,7 @@ $count += $value->count;
     @endforeach
     </tbody>
     <tfoot>
-        <tr> <td colspan="7" align="right"> <a href="#">^top</a> </td></tr>
+        <tr><td colspan="4">{{ $dealers->links()  }}</td><td colspan="7" align="right"> <a href="#">^top</a> </td></tr>
     </tfoot>
 </table>
 

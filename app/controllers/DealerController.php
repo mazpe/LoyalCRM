@@ -61,10 +61,10 @@ class DealerController extends \BaseController {
             ->orderBy('stages.sorting')
             ->orderBy('dealers.name')
             ->orderBy('dealer_group.name')
-            ->limit('500')
         ;
         $dealers_count = $dealers->count();
         $dealers = $dealers->get();
+
 
         $limit = array('' => 'Select a Limit',
             'all' => 'All', '50'=>'50','100'=>'100','500'=>'500','1000'=>'1000')
