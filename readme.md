@@ -1,16 +1,15 @@
-## Loyal Drievr
-Private development
+## Loyal Drievr - CRM
+# Author: Lester Ariel Mesa <lesterm@gmail.com>
 
-## Official Documentation
-...
+LoyalCRM is a Laravel-PHP based CRM system. In testing and working with many CRMs it has always been my impression that they tend to be too complicated. This CRM aims to be very simple and focuses in the real need of a Sales CRM: Contacts, Last Contact Information and Next Step.
 
-### TODO 
-- adding roles to users should be a users/{id}/adduser. Currently is been done via POST with a hidden field.
-- in DealersController.show the array for non contact dispositions should be dynamic.
-- DealsController.appointment setting the disposition should be dynamic
-- DealerController.repairorders_month is calculating the RO Total Amount in the view... now sure if its better there or perhaps a ->sum(amount).
+## Technologies
+- Laravel 4.x
+- Etrust Authentication/Roles
+- MySQL
+- Bootstrap
 
 
-### License
+### Limited License
 
 Copyright - Loyal Driver, Inc.

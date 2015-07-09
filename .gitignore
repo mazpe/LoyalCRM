@@ -1,4 +1,6 @@
 /app/config/production/database.php
+/app/config/development/database.php
+/app/config/database.php
 /bootstrap/compiled.php
 /vendor
 composer.phar
