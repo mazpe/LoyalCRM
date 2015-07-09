@@ -310,8 +310,6 @@ class DealerController extends \BaseController {
         // validate
         // read more on validation at http://laravel.com/docs/validation
         
-
-
         $rules = array(
             //'dealer_group_id'   => 'required|numeric',
             //'manufacture_id'    => 'required|numeric',
@@ -319,7 +317,6 @@ class DealerController extends \BaseController {
             'active'            => 'required|numeric'
         );
         $validator = Validator::make(Input::all(), $rules);
-
 
         $array = Array();
 
